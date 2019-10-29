@@ -1,0 +1,77 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <span class="navbar-brand" style="margin-left: 0; transform: translateX(-50%); left: 50%; position: absolute;">
+      	<button class="btn btn-default btn-xs hidden-xs" (click)="getPreviousMonth()"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></button>
+      	<button class="btn btn-default btn-sm" style="width: 200px" (click)="show_month_navigation = !show_month_navigation"><b>#365DayDraw: {{draw_date | date:'MMMM'}}</b></button>
+      	<button class="btn btn-default btn-xs hidden-xs" (click)="getNextMonth()"><i class="glyphicon glyphicon-menu-right" aria-hidden="true"></i></button>
+      </span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['']" title="Home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a (click)="goBack()" title="Back"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['/search']" title="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12" [hidden]="!show_month_navigation">
+			<ul class="list-group month-selector">
+				<li class="list-group-item" (click)="getData(1)" >January</li>
+				<li class="list-group-item" (click)="getData(2)" >February</li>
+				<li class="list-group-item" (click)="getData(3)" >March</li>
+				<li class="list-group-item" (click)="getData(4)" >April</li>
+				<li class="list-group-item" (click)="getData(5)" >May</li>
+				<li class="list-group-item" (click)="getData(6)" >June</li>
+				<li class="list-group-item" (click)="getData(7)" >July</li>
+				<li class="list-group-item" (click)="getData(8)" >August</li>
+				<li class="list-group-item" (click)="getData(9)" >September</li>
+				<li class="list-group-item" (click)="getData(10)">October</li>
+				<li class="list-group-item" (click)="getData(11)">November</li>
+				<li class="list-group-item" (click)="getData(12)">December</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" [hidden]="show_month_navigation">
+		<div class="col-md-3 feature-story">
+			<a [routerLink]="['/', draw_month, 'story']">
+				<img src="/assets/img/{{draw_date | date:'M'}}/{{story.image}}" alt="{{story.title}}">
+			</a>
+			<h3>Chapter {{draw_date | date:'M'}}</h3>
+			<h2>{{story.title}}</h2>
+			<p [innerHTML]="story.abstract"></p>
+			<p><a [routerLink]="['/', draw_month, 'story']" class="btn btn-default btn-sm">Read the Story</a></p>
+		</div>
+		<div class="col-md-9">
+			<ul class="l-grid month-grid">
+				<li *ngFor="let d of draw_data | month:draw_date; let i = index" [ngClass]="{'selected': d.value.winner}">
+					<span class="label label-success">{{d.key | date:'d'}}</span>
+					<a [routerLink]="['/', draw_month, i+1]">
+						<img src="/assets/img/{{draw_month}}/{{i+1}}.gif" title="{{d.key | date:'MMMM d'}}" />
+					</a>
+				</li>
+			</ul>			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 copyright">
+			&copy; 2016 Scott Dawson. All rights reserved. <br />
+			<a [routerLink]="['']">Welcome</a> | 
+			<a [routerLink]="['/1']">Browse</a> | 
+			<a [routerLink]="['/search']">Search</a> | 
+			<a href="http://twitter.com/scottpdawson" target=_blank>@scottpdawson</a>
+		</div>
+	</div>
+</div>
+
+
+

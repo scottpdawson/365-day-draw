@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <span class="navbar-brand" style="margin-left: 0; transform: translateX(-50%); left: 50%; position: absolute;">Search</span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['']" title="Home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a (click)="goBack()" title="Back"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="row buffer_bottom">
+			<div class="col-md-10 col-md-push-1">
+				<form id="search">
+			        <input autocomplete="off" type="search" [(ngModel)]="id_search" (keyup)="idSearchChanged()" [disabled]="!can_search" [class.disabled]="!can_search" name="id_search" placeholder="keyword(s)" autofocus />
+			        <p [hidden]="!id_search"><i (click)="id_search = ''; idSearchChanged();" class="glyphicon glyphicon-remove clear-search"></i></p>
+			    </form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="l-grid month-grid">
+					<li *ngFor="let d of draw_data | search:id_search; let i = index">
+						<span class="label label-success">{{d.key | date:'MMM d'}}</span>
+						<a [routerLink]="['/', d.key | date:'M', d.key | date:'d']">
+							<img src="/assets/img/{{d.key | date:'M'}}/{{d.key | date:'d'}}.gif" title="{{d.key | date:'MMMM d'}}" />
+						</a>
+					</li>
+				</ul>			
+			</div>
+		</div>
+		<div class="row" [hidden]="id_search">
+			<div class="col-md-12">    
+				<p class="text-center">Hit escape to clear your search again.<br />Here are some words to get you started:</p>
+				<p class="text-center" style="font-size: 2em;">
+					<a href="javascript:void(0)" (click)="id_search = 'abstract'; idSearchChanged()"><i>abstract</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'water'; idSearchChanged()"><i>water</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'wood'; idSearchChanged()"><i>wood</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'window'; idSearchChanged()"><i>window</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'hat'; idSearchChanged()"><i>hat</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'fire'; idSearchChanged()"><i>fire</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'eyes'; idSearchChanged()"><i>eyes</i></a><br />
+					<a href="javascript:void(0)" (click)="id_search = 'ski'; idSearchChanged()"><i>ski</i></a><br />
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 copyright">
+				&copy; 2016 Scott Dawson. All rights reserved. <br />
+				<a [routerLink]="['']">Welcome</a> | 
+				<a [routerLink]="['/1']">Browse</a> | 
+				<a [routerLink]="['/search']">Search</a> | 
+				<a href="http://twitter.com/scottpdawson" target=_blank>@scottpdawson</a>
+			</div>
+		</div>
+	</div>
+</div>

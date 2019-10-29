@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <span class="navbar-brand" style="margin-left: 0; transform: translateX(-50%); left: 50%; position: absolute;">
+      	Chapter {{draw_date | date:'M'}}
+      </span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['']" title="Home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a [routerLink]="['/', draw_month]"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid main-story">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<img src="/assets/img/{{draw_date | date:'M'}}/{{story.image}}" alt="Ski Boot">
+			<h2>{{story.title}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2 col-xs-12">
+			<p [innerHTML]="story.story"></p>
+			<hr>
+			<p class="text-center"><a [routerLink]="['/', draw_month]" class="btn btn-default btn-sm">Done</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 copyright">
+			&copy; 2016 Scott Dawson. All rights reserved. <br />
+			<a [routerLink]="['']">Welcome</a> | 
+			<a [routerLink]="['/1']">Browse</a> | 
+			<a [routerLink]="['/search']">Search</a> | 
+			<a href="http://twitter.com/scottpdawson" target=_blank>@scottpdawson</a>
+		</div>
+	</div>
+</div>
+
+
+
