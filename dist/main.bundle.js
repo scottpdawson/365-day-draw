@@ -511,19 +511,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppComponent = (function () {
     function AppComponent(router) {
         this.router = router;
-        this.title = '365DayDraw works!';
+        this.title = "365DayDraw works!";
         this.router.events.subscribe(function (event) {
             if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* NavigationEnd */]) {
-                ga('set', 'page', event.urlAfterRedirects);
-                ga('send', 'pageview');
             }
         });
     }
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-            selector: 'app-root',
+            selector: "app-root",
             template: __webpack_require__(711),
-            styles: [__webpack_require__(710)]
+            styles: [__webpack_require__(710)],
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === 'function' && _a) || Object])
     ], AppComponent);

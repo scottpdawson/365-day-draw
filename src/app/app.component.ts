@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import {Router, NavigationEnd} from "@angular/router";
+import { Component } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = '365DayDraw works!';
+  title = "365DayDraw works!";
   constructor(public router: Router) {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
+        // ga("set", "page", event.urlAfterRedirects);
+        // ga("send", "pageview");
       }
     });
   }
